@@ -1,0 +1,11 @@
+Set of scripts to run molecular dynamics simulation in openmm software.
+Simulation/ folder contains the coordinates of the system "jesslys_let.pdb" and PBS batch file "run_openmm_dip.sh". Within openmm/ folder there is a set of openmm scripts to run the simulation and output dipole moment.
+We used following procedure:
+#Energy minimalization
+0_new_min.py -p jesslys.pdb
+#npt equlibration
+1_new_npt.py --xml system.xml -p jesslys.pdb -s minimized.xml -n 1000000 --ntp --dt 1 --nrespa 2 --interval 1000
+#nvt run with frame generation
+2_nvt_frame_gen.py --xml system.xml -p jesslys.pdb -s output.xml -n 10000000 --dt 1 --nrespa 2 --nframes 100 --interval 10000
+# After generation of different system states we used shell script "batch.sh" to push all the simulations to queuing system. 
+
