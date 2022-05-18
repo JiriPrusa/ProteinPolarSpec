@@ -1,0 +1,8 @@
+Set of scripts to exctract absorption spectra from MD trajectories.
+
+We follow the procedure:
+1) Calculate the average structure from each trajectory and then make average structure from these averages - tcl_vmd/average_writer.tcl
+2) Align all trajetories to reference averaged frame and output transformation matrix for it - tcl_vmd/bow_before_queen.tcl
+3) Rotate dipole moment outputed during MD by transformation matrix from step 2. - tcl_vmd/rot_dip_vectors.tcl
+4) Sum the induced dipoles of AMOEBA and permanent dipoles - python/sumUpDipoles.py
+5) Produce the spectra by fft of coeficients of autoregressive model of dipole moment evolution python/projectProcessor_openmm.py
