@@ -1,0 +1,6 @@
+Set of Python scripts working on python 3.10
+
+MEM_burg.py - python interpretation of multi-chanel burg algorythm 
+projetProcessor_openmm.py - caclulation of absorption spectra from dipole moment evolution 
+sumUpDipoles.py - support script to sum up permamenent and induced dipoles from amoeba
+  

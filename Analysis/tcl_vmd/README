@@ -1,0 +1,6 @@
+Set of tcl/Tk scripts working with vmd version 1.9.3
+
+average_writer.tcl - read the trajectories save average frame for each traj and then save the average from those averages (queen of average)
+bow_before_queen.tcl - align all trajecories according to queen of average and save the transformation matrix for each frame
+aligner.tcl - supporting script for trajectory alignement
+rot_dip_vectors.tcl - rotate dipole vectors acording to transformation matrix aplied durign alignement
