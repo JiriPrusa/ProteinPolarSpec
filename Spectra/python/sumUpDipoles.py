@@ -2,9 +2,9 @@ from dipole_lib import importDipoleData, exportDipoleData
 import numpy as np
 
 s_num = 0
-t_num = 2
-folderName = "/home/jirka/WORK/UFE/Jessica/lsozyme_2021/dip_data"
-oFolderName = "/home/jirka/WORK/UFE/Jessica/lsozyme_2021/dip_data"
+t_num = 100
+folderName = "/home/jirka/JESS_2022/TRAJ"
+oFolderName = "/home/jirka/JESS_2022/TRAJ"
 for i in range(s_num, t_num):
     print(i)
     # import dipoles from permanent charges

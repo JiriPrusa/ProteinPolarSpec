@@ -1,5 +1,9 @@
+# Rotate induced dipole moments outputed along MD trajectory
+# by transformation matrix.
+
 set nof_traj 100
 for {set i 0} {$i < $nof_traj} {incr i} {
+    puts $i
     # read matrix in
     set fm [open rot_${i}.mat r]
     set rot_matrixes [split [read $fm] "\n"]
@@ -7,7 +11,7 @@ for {set i 0} {$i < $nof_traj} {incr i} {
     set empty_line_index [expr [llength $rot_matrixes] - 1]
     set rot_matrixes [lreplace $rot_matrixes $empty_line_index $empty_line_index]
     # read dipole in
-    set fd [open dip_${i}.csv r]
+    set fd [open ${i}/dip.csv r]
     set lines [split [read $fd] "\n"]   
     close $fd
     set dipoles [lreplace $lines 0 0]
@@ -21,7 +25,6 @@ for {set i 0} {$i < $nof_traj} {incr i} {
         puts $foi [vectrans $M $ind_dip]
     }
     close $fot
-    close $foi
-
-    
+    close $foi   
 }
+quit

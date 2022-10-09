@@ -5,7 +5,7 @@ from spectrum import arma2psd
 import numpy as np
 from numpy.fft import fft
 from scipy.constants import k, epsilon_0, c
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 ###################MEM SPECTRA CALCULATION #############################
 ########################################################################
@@ -15,7 +15,8 @@ def MEM():
     p = 75  # order of Burg
     alpha = 0.5  # damping factor for coefficients
     s_num = 0
-    t_num = 50
+    t_num = 100
+    path = "/home/jirka/JESS_2022/TRAJ"
     ###############
     plot_style = 1  # 0 == Frequency, 1 == wavelength
     # Create a for loop to read in each csv file and append the results to a list
@@ -24,7 +25,7 @@ def MEM():
     # import multiple CSV files
     for i in range(s_num, t_num):
         print(i)
-        dipFileName = "/home/jirka/WORK/UFE/Jessica/lsozyme_2021/dip_data/SUMDIP_%i.csv" % i
+        dipFileName = "%s/SUMDIP_%i.csv" % (path, i)
         # import dipole file
         dip_data, V = importDipoleData(dipFileName)
         dip = np.array(dip_data[['dip_x', 'dip_y', 'dip_z']])
@@ -49,7 +50,7 @@ def MEM():
 
     res = sigma * np.cumprod(1 - rc ** 2)
     rc[0] = 1
-    cic_ar, pe_est = cic(res, 166667)
+    cic_ar, pe_est = cic(res, 166666)
     # AR, rho, ref = spectrum.arburg(array_of_derivatives, 100)
     toc = time.time()
     print("time: " + str(toc - tic))
@@ -76,12 +77,12 @@ def MEM():
     else:
         x_ticks = freq / c / 100
 
-    fig, axs = plt.subplots(2)
-    axs[0].plot(x_ticks, psd)
-    axs[1].plot(coeffs)
-    plt.show()
-    np.savetxt("/home/jirka/WORK/UFE/alignByQueen/TEST/coefs_openmm.csv", coeffs)
-    np.savetxt("/home/jirka/WORK/UFE/alignByQueen/TEST/spec_openmm.csv", np.vstack((freq, psd)).T, header='Freq  Intensity', delimiter="\t")
+#    fig, axs = plt.subplots(2)
+#    axs[0].plot(x_ticks, psd)
+#    axs[1].plot(coeffs)
+#    plt.show()
+    np.savetxt("%s/coefs_openmm.csv" % path, coeffs)
+    np.savetxt("%s/spec_openmm.csv" % path, np.vstack((freq, psd)).T, header='Freq  Intensity', delimiter="\t")
 
 ########################################################################################################################
 ########################################################################################################################
